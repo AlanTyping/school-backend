@@ -1,0 +1,14 @@
+GET http://localhost:2000/users
+
+
+###
+GET http://localhost:2000/users/123
+
+
+# ###
+# GET http://localhost:2000/projects/3
+# Content-Type: application/json
+
+# {
+#     "userId": 1
+# }
