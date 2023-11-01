@@ -19,7 +19,9 @@ const userSchema = z.object({
     password: z.string().min(10).max(60),
     name: z.string().min(1).max(25),
     lastName: z.string().min(1).max(25),
-    isAdmin: z.boolean().optional()
+    isAdmin: z.boolean().optional(),
+    verificationToken: z.string().optional(),
+    status: z.boolean().optional()
 })
 
 const object = {

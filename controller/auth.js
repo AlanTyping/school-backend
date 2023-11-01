@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { UsersModel } from '../model/users.js';
+import { randomUUID } from 'crypto';
 
 export class AuthController {
   static register = async (req, res) => {
@@ -7,15 +8,23 @@ export class AuthController {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(bodyData.password, salt);
 
+    const code = 'manolo'
+
     const data = {
       username: bodyData.username,
       email: bodyData.email,
       name: bodyData.name,
       lastName: bodyData.lastName,
-      password: hashedPassword
+      password: hashedPassword,
+      verificationToken: 'pabliteeeee'
     } 
 
-    return res.json(await UsersModel.create(data))
+    const result = await UsersModel.create(data)
+
+    console.log(result)
+    if (!result.username) return res.status(400).json(result);
+
+    return res.status(200).json(result)
   } 
 
   static login = async (req, res) => {
